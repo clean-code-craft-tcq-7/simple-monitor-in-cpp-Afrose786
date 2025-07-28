@@ -12,12 +12,7 @@ return vitalTemp(temperature)&&vitalPulseRate(pulseRate)&&vitalSpo2(spo2);
 int vitalTemp(float temperature){
   if (temperature > 102 || temperature < 95) {
     cout << "Temperature is critical!\n";
-    for (int i = 0; i < 6; i++) {
-      cout << "\r* " << flush;
-      sleep_for(seconds(1));
-      cout << "\r *" << flush;
-      sleep_for(seconds(1));
-    }
+    delay();
       return 0;
     }
     return 1;
@@ -25,12 +20,7 @@ int vitalTemp(float temperature){
   int vitalPulseRate(float pulseRate){
   if (pulseRate < 60 || pulseRate > 100) {
     cout << "Pulse Rate is out of range!\n";
-    for (int i = 0; i < 6; i++) {
-      cout << "\r* " << flush;
-      sleep_for(seconds(1));
-      cout << "\r *" << flush;
-      sleep_for(seconds(1));
-    }
+    delay();
     return 0;
     }
     return 1;
@@ -38,13 +28,16 @@ int vitalTemp(float temperature){
   int vitalSpo2(float spo2){
     if (spo2 < 90) {
     cout << "Oxygen Saturation out of range!\n";
-    for (int i = 0; i < 6; i++) {
+    delay();
+    return 0;
+    }
+  return 1;
+  }
+void delay(){
+for (int i = 0; i < 6; i++) {
       cout << "\r* " << flush;
       sleep_for(seconds(1));
       cout << "\r *" << flush;
       sleep_for(seconds(1));
     }
-    return 0;
-    }
-  return 1;
-  }
+}
